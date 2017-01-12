@@ -76,5 +76,12 @@ class Hypothesis:
             print ( traceback.print_exc() )
 
        
+    def get_annotation(self, id=None):
+        h_url = '%s/annotations/%s' % ( self.api_url, id )
+        if self.token is not None:
+            obj = self.token_authenticated_query(h_url)
+        else:
+            obj = json.loads(requests.get(h_url))
+        return obj
               
 
